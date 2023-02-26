@@ -19,7 +19,7 @@ do_backup()
   # Backup to a temporary file
   cryptsetup luksHeaderBackup "$1" --header-backup-file "$G_tmpf"
   # Encrypt the backup
-  gpg -o "$2" --symmetric "$G_tmpf"
+  gpg -o "$2" --no-symkey-cache --symmetric "$G_tmpf"
   # Prevent other users from writin the file (TODO: do this atomically)
   chmod 400 "$2"
 
